@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Slider</title>
+    <style>
+      
+/* General page styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main testimonial section */
+.testimonial-section {
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Section heading */
+.testimonial-section h2 {
+    margin-bottom: 25px;
+    color: #222;
+}
+
+/* Testimonial card */
+.testimonial-card {
+    background-color: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Customer name */
+.testimonial h3 {
+    color: #2563eb;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+/* Customer review */
+.testimonial p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Button container */
+.slider-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Buttons */
+.slider-buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* Button hover effect */
+.slider-buttons button:hover {
+    background-color: #1d4ed8;
+}
+ 
+    </style>
+</head>
+
+<body>
+
+    <section class="testimonial-section">
+
+        <h2>Customer Testimonials</h2>
+
+        <div class="testimonial-card">
+
+            <div class="testimonial">
+
+                <h3 id="customer-name">Sarah</h3>
+
+                <p id="customer-review">
+                    Excellent service! I really enjoyed the experience.
+                </p>
+
+
+            </div>
+
+            <div class="slider-buttons">
+
+                <button id="prev-btn">Previous</button>
+
+                <button id="next-btn">Next</button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+<script>
+ const testimonials = [
+{
+name: "Sarah",
+review: "Excellent service! I really enjoyed the experience."
+},
+{
+name: "John",
+review: "The delivery was fast, and the product was excellent."
+},
+{
+name: "Mary",
+review: "I'm very satisfied with the customer service."
+}
+];
+
+let currentIndex = 0;
+
+const customerName = document.getElementById("customer-name");
+const customerReview = document.getElementById("customer-review");
+
+const nextBtn = document.getElementById("next-btn");
+const prevBtn = document.getElementById("prev-btn");
+
+function showTestimonial() {
+customerName.textContent = testimonials[currentIndex].name;
+customerReview.textContent = testimonials[currentIndex].review;
+}
+
+// Previous button
+prevBtn.addEventListener("click", function() {
+currentIndex--;
+
+
+if (currentIndex < 0) {
+    currentIndex = testimonials.length - 1;
+}
+
+showTestimonial();
+
+
+});
+
+// Next button
+nextBtn.addEventListener("click", function() {
+currentIndex++;
+
+if (currentIndex >= testimonials.length) {
+    currentIndex = 0;
+}
+
+showTestimonial();
+
+
+});
+
+// Display the first testimonial
+showTestimonial();
+setInterval(function() {
+    currentIndex++;
+
+    if (currentIndex >= testimonials.length) {
+        currentIndex = 0;
+    }
+
+    showTestimonial();
+
+}, 5000);
+</script>
+</body>
+
+</html>
